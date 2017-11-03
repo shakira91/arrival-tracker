@@ -14,10 +14,11 @@
       <div class="row">
         <div class="col-lg-8">
           <h3>Please update arrival numbers using the form below.</h3>
-          <form id="arrivalForm" action="tracker.php" method="POST">
+          <form id="arrivalForm">
             <div class="form-group">
-              <label for="arrival">Refugee Admissions Ceiling for FY18:</label>
-              <input type="text" class="form-control" name="input1" id="input1" value="">
+              <label for="arrival">Africa:</label>
+              <input type="text" class="form-control" name="input1month" id="input1month" placeholder="Enter the month" value="">
+              <input type="text" class="form-control" name="input1amount" id="input1amount" placeholder="Enter the amount" value="">
             </div>
             <div class="form-group">
               <label>Refugee Admissions for FY18:</label>
@@ -28,12 +29,26 @@
               <input type="text" class="form-control" name="input3" id="input3" value="">
             </div>
           </form>
-          <button type="" onclick="document.forms[0].submit()" class="btn btn-primary">Submit</button>
+          <button type="" id="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBKFFPvdfvxVoxD2HsdEZq3PmNR6_STSqU",
+        authDomain: "arrival-tracker-c0ba4.firebaseapp.com",
+        databaseURL: "https://arrival-tracker-c0ba4.firebaseio.com",
+        projectId: "arrival-tracker-c0ba4",
+        storageBucket: "arrival-tracker-c0ba4.appspot.com",
+        messagingSenderId: "177811423780"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
