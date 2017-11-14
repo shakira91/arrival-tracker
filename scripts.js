@@ -1,8 +1,14 @@
 "use strict";
 (() => {
 	function setData(region, amount, digit) {
-		firebase.database().ref(region + '/').child(document.getElementById("input"+ digit +"month").value).set({
+		firebase.database().ref(region + '/').child(document.getElementById("input"+ digit +"time").value).set({
 	    	amount : amount // sets data in Database
+	  });
+	}
+
+	function setTotal() {
+		firebase.database().ref('Totals').set({
+	    	amount : document.getElementById("total").value // sets data in Database
 	  });
 	}
 
@@ -12,9 +18,7 @@
 		setData('Europe', document.getElementById("input3amount").value, 3);
 		setData('Latin America', document.getElementById("input4amount").value, 4);
 		setData('Near East', document.getElementById("input5amount").value, 5);
-
-		
-
+		setTotal();
 
 	});
 })();
