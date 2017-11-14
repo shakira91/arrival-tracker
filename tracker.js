@@ -3,33 +3,39 @@
 
 	var amounts = [];
 
-	function tracker(africa) {
-		var countdown;
-		var prevMonth = 400;
-		for (var n = 0; n >= 0; n--) {
-			return (() => {
-				countdown = window.setInterval(() => {
-					document.getElementById("africa").innerHTML = prevMonth--; // the previous month's number					
-					if (document.getElementById("africa").innerHTML == africa) {						
-						window.clearInterval(countdown);
-					}
-				}, 50);	
-			})(n);
-		}
+	function tracker(africa, ea, europe, la, ne) {
+		document.getElementById("africa").innerHTML = africa;
+		document.getElementById("ea").innerHTML = ea;
+		document.getElementById("europe").innerHTML = europe;
+		document.getElementById("la").innerHTML = la;
+		document.getElementById("ne").innerHTML = ne;
 	}
 
-	function getData(region, month) {
-	    var starCountRef = firebase.database().ref(region + '/' + month +'/').on('value', function(snapshot) {
-		  amounts.push(snapshot.val().amount); // returns amount at specified point.
-		  tracker(amounts[0])
+	function getData(region) {
+	    firebase.database().ref(region).on('value', function(snapshot) {
+	   		for (var prop in snapshot.val()) {
+	 			amounts.push(snapshot.val()[prop].amount)
+	 		}
+	 		var total = parseInt(amounts[0]) + parseInt(amounts[1]) + parseInt(amounts[2]) + parseInt(amounts[3]) + parseInt(amounts[4]);
+	 		document.getElementById("timeframe").innerHTML = Object.keys(snapshot.val())[Object.keys(snapshot.val()).length - 1] + ' : ' + total;
+			tracker(amounts[0], amounts[1], amounts[2], amounts[3], amounts[4]);
 		});
 	}
 
-	getData('Africa', 'October 2017');
-	getData('East Asia', 'October 2017');
-	getData('Europe', 'October 2017');
-	getData('Latin America', 'October 2017');
-	getData('Near East', 'October 2017');
+	function getTotal() {
+	    firebase.database().ref('Totals').on('value', function(snapshot) {
+	   		for (var prop in snapshot.val()) {
+	 			document.getElementById("totals").innerHTML = snapshot.val()[prop];
+	 		}
+		});
+	}
+
+	getData('Africa');
+	getData('East Asia');
+	getData('Europe');
+	getData('Latin America');
+	getData('Near East');
+	getTotal();
 
 })();
 
