@@ -12,15 +12,33 @@
 	  });
 	}
 
-	document.getElementById("submit").addEventListener("click", () => {
-		setData('Africa', document.getElementById("input1amount").value, 1);
-		setData('East Asia', document.getElementById("input2amount").value, 2);
-		setData('Europe', document.getElementById("input3amount").value, 3);
-		setData('Latin America', document.getElementById("input4amount").value, 4);
-		setData('Near East', document.getElementById("input5amount").value, 5);
-		setTotal();
+	document.addEventListener("DOMContentLoaded", () => {
+		document.getElementById("rcusa-submit").addEventListener("click", () => {
+			if (document.getElementById("input1amount").value !== '' &&
+				document.getElementById("input2amount").value !== '' && 
+				document.getElementById("input3amount").value !== '' &&
+				document.getElementById("input4amount").value !== '' &&
+				document.getElementById("input5amount").value !== '' &&
+				document.getElementById("input1time").value !== '' &&
+				document.getElementById("input2time").value !== '' && 
+				document.getElementById("input3time").value !== '' &&
+				document.getElementById("input4time").value !== '' &&
+				document.getElementById("input5time").value !== '' &&
+				document.getElementById("total").value !== '') {
+					setData('Africa', document.getElementById("input1amount").value, 1);
+					setData('East Asia', document.getElementById("input2amount").value, 2);
+					setData('Europe', document.getElementById("input3amount").value, 3);
+					setData('Latin America', document.getElementById("input4amount").value, 4);
+					setData('Near East', document.getElementById("input5amount").value, 5);
+					setTotal();
+				} else {
+					alert("No blank fields, please.")
+				}
 
+		});
 	});
+
+	
 })();
 
 
