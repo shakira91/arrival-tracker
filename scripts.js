@@ -1,8 +1,9 @@
 "use strict";
 (() => {
 	function setData(region, amount, digit) {
-		firebase.database().ref(region + '/').child(document.getElementById("input"+ digit +"time").value).set({
-	    	amount : amount // sets data in Database
+		firebase.database().ref(region + '/').child("arrivals").set({
+	    	amount : amount, // sets data in Database
+	    	timeframe : document.getElementById("input1time").value // sets data in Database
 	  });
 	}
 
